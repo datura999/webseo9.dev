@@ -13,7 +13,11 @@ mysql_select_db('itstep_db', $link);
 
 if(isset($_GET['del_id'])) {
     $result = mysql_query("DELETE FROM persons WHERE Id='" . $_GET['del_id'] . "'");
+    if(!$result) {
+        echo mysql_error();
+    }
 }
+
 if(isset($_POST['add'])) {
 
     $query = "INSERT INTO persons (FirstName, LastName, Birthday)"
