@@ -11,12 +11,10 @@
 $link = mysql_connect('localhost', 'itstep', '123123');
 mysql_select_db('itstep_db', $link);
 
+if(isset($_GET['del_id'])) {
+    $result = mysql_query("DELETE FROM persons WHERE Id='" . $_GET['del_id'] . "'");
+}
 if(isset($_POST['add'])) {
-    /*$query = 'INSERT INTO persons (FirstName, LastName, Birthday)'
-        . 'VALUES (\''
-        . $_POST['firstName'] . '\', \''
-        . $_POST['lastName'] . '\', \''
-        . $_POST['birthDate'] . '\')';*/
 
     $query = "INSERT INTO persons (FirstName, LastName, Birthday)"
         . " VALUES ('%s', '%s', '%s')";
@@ -35,7 +33,7 @@ while($row = mysql_fetch_assoc($result)) {
     echo '<td>' . $row['FirstName'] . '</td>';
     echo '<td>' . $row['LastName'] . '</td>';
     echo '<td>' . $row['Birthday'] . '</td>';
-    echo '<td><a href="delete.php?id='. $row['Id'] .'">X</a></td>';
+    echo '<td><a href="?del_id='. $row['Id'] .'">X</a></td>';
     echo '</tr>';
 }
 echo '</table>';
