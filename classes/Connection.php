@@ -8,10 +8,16 @@ class Connection {
         mysql_select_db($dbName, $this->connection);
     }
 
+    public function query($query) {
+        $result = mysql_query($query, $this->connection);
+
+        return $result;
+    }
+
     public function selectAll($query) {
         $resultArr = array();
 
-        $result = mysql_query($query);
+        $result = mysql_query($query, $this->connection);
 
         if($result) {
             while($row = mysql_fetch_assoc($result)) {
