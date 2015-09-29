@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Вадим
- * Date: 29.09.2015
- * Time: 19:57
- */
+<?
+require_once('classes/Connection.php');
+$db = new Connection('localhost', 'itstep', '123123', 'itstep_db');
+$groups = $db->selectAll('SELECT * FROM "group"');
+
